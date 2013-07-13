@@ -66,7 +66,7 @@ cd $BUILD_DIR
 source $BIN_DIR/steps/hooks/pre_compile
 
 # Clone the already compiled ffmped binaries from github
-FFMPEG_BINARY="https://github.com/dzello/ffmpeg-heroku.git"
+FFMPEG_BINARY="https://github.com/dqueue/heroku-ffmpeg.git"
 VENDOR_FOLDER="vendor/ffmpeg"
 
 mkdir -p $BUILD_DIR/$VENDOR_FOLDER  &> /dev/null
@@ -176,11 +176,11 @@ for dir in $CACHED_DIRS; do
 done
 
 # Set context environment variables.
-set-env PATH '$HOME/.heroku/python/bin:$PATH'
+set-env PATH '$HOME/.heroku/python/bin:$PATH:/app/.heroku/vendor/ffmpeg/ffmpeg/bin'
 set-env PYTHONUNBUFFERED true
 set-env PYTHONHOME /app/.heroku/python
-set-default-env LIBRARY_PATH /app/.heroku/vendor/lib
-set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib
+set-default-env LIBRARY_PATH /app/.heroku/vendor/lib:/app/.heroku/vendor/ffmpeg/fdk-aac/lib:/app/.heroku/vendor/ffmpeg/ffmpeg/lib
+set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib:/app/.heroku/vendor/ffmpeg/fdk-aac/lib:/app/.heroku/vendor/ffmpeg/ffmpeg/lib
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 set-default-env PYTHONPATH /app/
